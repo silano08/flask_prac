@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <!--    구글 폰트-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+    <title>스파르타코딩클럽 | 부트스트랩 연습하기</title>
+
+    <style>
+        *{
+            font-family: 'Jua', sans-serif;
+        }
+
+        .title{
+            text-align: center;
+        }
+
+        .figure{
+            display: block;
+            margin:auto;
+        }
+
+        .btn-toolbar{
+            margin-top: 50px;
+        }
+
+        .order-form{
+            width:500px;
+            margin: auto;
+        }
+
+        .order-button{
+            text-align: center;
+            margin: 0px auto;
+        }
+
+        .rate{
+            color: blue;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "https://api.manana.kr/exchange/rate.json",
+                data: {},
+                success: function (response) {
+                    let a = response[1]["rate"];
+                    console.log(a);
+                    let b = `<p class="rate">환율:${a}</p>`
+                    $("#explain").append(b);
+                }
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <div class="title">
+        <img class="figure" src="http://www.kyoumashop.com/shopimages/sayclock/mobile/9/3356009_represent?1538058918">
+        <h1 style="margin-top: 20px">[GOOD SMILE] 넨도로이드 no.332『마법소녀 마도카☆마기카』카나메 마도카 마이코 ver. <span style="font-size:16px">가격: 85,000원 / 개</span></h1>
+        <p id="explain">- 하기의 이미지는 시제품이며, 양산품은 약간의 차이가 발생할 수 있습니다.
+-[GOOD SMILE]_[넨도로이드]_770  [마법소녀 마도카 마기카] 카나메 마도카 (마이코 Ver.) [03592]
+-상품높이: 약 10cm </p>
+    </div>
+
+    <div class="order-form">
+        <h1>주문하기</h1>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">주문자 성함</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">수량</label>
+          </div>
+          <select class="custom-select" id="inputGroupSelect01">
+            <option selected>수량을 선택하세요.</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">주소</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">전화번호</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+    </div>
+
+    <div class="order-button">
+        <button type="button" class="btn btn-primary">주문하기</button>
+    </div>
+
+    <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+      <div class="btn-group" role="group" aria-label="First group">
+        <button type="button" class="btn btn-secondary">1</button>
+        <button type="button" class="btn btn-secondary">2</button>
+        <button type="button" class="btn btn-secondary">3</button>
+        <button type="button" class="btn btn-secondary">4</button>
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text" id="btnGroupAddon2">@</div>
+        </div>
+        <input type="text" class="form-control" placeholder="Input group example" aria-label="Input group example" aria-describedby="btnGroupAddon2">
+      </div>
+</div>
+</body>
+
+</html>

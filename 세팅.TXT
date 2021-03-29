@@ -1,0 +1,67 @@
+## ajax api call 세팅
+$.ajax({
+  type: "GET",
+  url: "여기에URL을입력",
+  data: {},
+  success: function(response){
+    console.log(response)
+  }
+})
+
+### 크롤링 기본 세팅
+import requests
+from bs4 import BeautifulSoup
+
+headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
+data = requests.get('https://movie.naver.com/movie/sdb/rank/rmovie.nhn?sel=pnt&date=20200303',headers=headers)
+
+soup = BeautifulSoup(data.text, 'html.parser')
+
+# 플라스크 세팅
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+   return '나의 첫 서버!'
+
+
+@app.route('/mypage')
+def mypage():
+    # 헐 바로 html 칠수가 있슴
+   return '<button>나는버튼이다</button>'
+
+if __name__ == '__main__':
+   app.run('0.0.0.0',port=5000,debug=True)
+
+########### API
+1. get 요청 api 코드
+@app.route('/test', methods=['GET'])
+def test_get():
+   title_receive = request.args.get('title_give')
+   print(title_receive)
+   return jsonify({'result':'success', 'msg': '이 요청은 GET!'})
+2. get 요청확인 코드
+$.ajax({
+    type: "GET",
+    url: "/test?title_give=봄날은간다",
+    data: {},
+    success: function(response){
+       console.log(response)
+    }
+  })
+3. post 요청 api 코드
+@app.route('/test', methods=['POST'])
+def test_post():
+   title_receive = request.form['title_give']
+   print(title_receive)
+   return jsonify({'result':'success', 'msg': '이 요청은 POST!'})
+4. post 요청확인 코드
+$.ajax({
+    type: "POST",
+    url: "/test",
+    data: { title_give:'봄날은간다' },
+    success: function(response){
+       console.log(response)
+    }
+  })
